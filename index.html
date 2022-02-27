@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <?php $IPATH = $_SERVER["DOCUMENT_ROOT"]."/assets/php/"; 
+    include($IPATH."meta.html"); ?>
+    <title>Open Graph Tag Maker</title>
+      <!-- Facebook OpenGraph developers.facebook.com/docs/reference/opengraph/ -->
+      <meta property="og:type" content="article" />
+      <meta property="og:title" content="Open Graph Tag Maker" />
+      <meta property="og:description" content="Simple tool for creating Facebook and LinkedIn Open Graph tags, and Twitter Cards, for social media sharing"
+      />
+      <meta property="og:url" content="https://alansimpson.me/html_css/tools/opengraphmaker.html" />
+      <meta property="og:image" content="https://alansimpson.me/html_css/tools/opengraphmakerog.jpg" />
+  
+      <!-- Twitter domain approval dev.twitter.com/docs/cards/validation/validator -->
+      <!-- For twitter, content is "summary" as shown, or "photo" or "player" (for video) -->
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="Open Graph Tag Maker">
+      <meta name="twitter:description" content="Simple tool for creating Facebook and LinkedIn Open Graph tags, and Twitter Cards, for social media sharing">
+      <meta name="twitter:url" content="https://alansimpson.me/html_css/tools/opengraphmaker.html">
+      <meta name="twitter:image" content="ttps://alansimpson.me/html_css/tools/opengraphmakerog.jpg">
+      <!-- Shema.org microdata -->
+  
+      <meta itemprop="name" content="Open Graph Tag Maker">
+      <meta itemprop="description" content="Simple tool for creating Facebook and LinkedIn Open Graph tags, and Twitter Cards, for social media sharing">
+      <meta itemprop="image" content="https://alansimpson.me/html_css/tools/opengraphmakerog.jpg">
+    <style>
+        h1 {
+            margin: 0;
+        }
+
+        table.controls {
+            width: 98%;
+        }
+
+        table.controls td {
+            vertical-align: middle;
+        }
+
+        table.controls td:nth-child(1) {
+            width: 110px;
+        }
+
+        table.controls .instruct {
+            font-size: 80%;
+            color: gray;
+            line-height: 0;
+        }
+
+        table.controls input[type="text"],
+        table.controls textarea {
+            margin: 0;
+            padding: 4px;
+            width: 90%;
+        }
+
+        table.controls select {
+            margin: 0;
+            padding: 4px;
+        }
+
+        #title1,
+        #title2,
+        #title3 {
+            color: #0971B2;
+        }
+
+        #descrip1,
+        #descrip2,
+        #descrip3 {
+            color: #B21212;
+        }
+
+        #type1,
+        #type2 {
+            color: blue;
+        }
+
+        #pageurl1,
+        #pageurl2 {
+            color: magenta;
+        }
+
+        #imageurl1,
+        #imageurl2,
+        #imageurl3 {
+            color: orange;
+        }
+
+        #moreinfo {
+            display: table;
+            width: 98%;
+            margin: 0 auto;
+        }
+
+        #moreinfo div {
+            display: table-row;
+        }
+
+        #leftcol,
+        #rightcol {
+            width: 48%;
+            box-sizing: border-box;
+            display: table-cell;
+            padding: 0;
+        }
+
+        #leftcol {
+            float: left;
+        }
+
+        #rightcol {
+            float: right;
+        }
+
+        #allcode {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 90%;
+            line-height: 98%;
+            border: solid 1px gray;
+            border-radius: 4px;
+            padding: 8px;
+            margin-bottom: 2em;
+        }
+    </style>
+</head>
+
+<body>
+    <?php include($IPATH."headernav.html"); ?>
+    <article>
+        <a href="http://alansimpson.thinkific.com/courses/sharing-with-facebook-open-graph-and-twitter-cards" style="float:right"
+            ;>Video &rarr;
+            <img src="/assets/images/video.png" title="Click for video lessons" alt="Click for video lessons" style="height:32px" />
+        </a>
+        <h1>Open Graph and Twitter Cards</h1>
+
+
+        <table class="controls">
+            <tr>
+                <td>Title: </td>
+                <td>
+                    <input type="text" id="tbTitle" style="color:#0971B2;" />&nbsp;&nbsp;
+                    <span id="titlecharcount"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Description: </td>
+                <td>
+                    <textarea type="text" id="tbDescription" rows="2" style="color:#B21212;"></textarea>&nbsp;&nbsp;
+                    <span id="descriptcount"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Type: </td>
+                <td>
+                    <select id="ddlType">
+                        <option value="3">application/x-shockwave-flash</option>
+                        <option value="2">article</option>
+                        <option value="3">audio/mpeg</option>
+                        <option value="1">book</option>
+                        <option value="3">music.album</option>
+                        <option value="3">music.playlist</option>
+                        <option value="3">music.radio_station</option>
+                        <option value="3">music.song</option>
+                        <option value="1">profile</option>
+                        <option value="2">image/jpeg</option>
+                        <option selected value="1">website</option>
+                        <option value="3">video.episode</option>
+                        <option value="3">video.movie</option>
+                        <option value="3">video.other</option>
+                        <option value="3">video.tv_show</option>
+                        <option>website</option>
+                    </select>
+                    <span class="instruct">&nbsp;See
+                        <a href="http://ogp.me/">ogp.me</a> for additional global types</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Resource URL: </td>
+                <td>
+                    <input type="text" id="tbURL" style="color: magenta" />
+                    <br>
+                    <span class="instruct">Address of resource (http:// or https://)</span>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>Image URL: </td>
+                <td>
+                    <input type="text" id="tbImageURL" style="color: orange" />
+                    <br>
+                    <span class="instruct">URL of image to show (about 1200x630)</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center">
+                    <button onclick="go()" id="btnGo">Show All the Code</button>
+                </td>
+            </tr>
+        </table>
+        <div id="allcode">
+
+            &lt;!-- Facebook OpenGraph developers.facebook.com/docs/reference/opengraph/ --&gt;
+            <br> &lt;meta property="og:type" content="<span id="type1">website</span>"&gt;
+            <br /> &lt;meta property="og:title" content="<span id="title2"></span>"&gt;
+            <br> &lt;meta property="og:description" content="<span id="descrip2"></span>"&gt;
+            <br> &lt;meta property="og:url" content="<span id="pageurl1"></span>"&gt;
+            <br> &lt;meta property="og:image" content="<span id="imageurl2"></span>"&gt;
+            <br>
+            <br /> &lt;!-- Twitter domain approval dev.twitter.com/docs/cards/validation/validator --&gt;
+            <br> &lt;!-- For twitter, content is usually summary_large_image as shown --&gt;
+            <br> &lt;meta name="twitter:card" content="<span id="type2">summary_large_image</span>"&gt;
+            <br> &lt;meta name="twitter:title" content="<span id="title3"></span>"&gt;
+            <br> &lt;meta name="twitter:description" content="<span id="descrip3"></span>"&gt;
+            <br> &lt;meta name="twitter:url" content="<span id="pageurl2"></span>"&gt;
+            <br> &lt;meta name="twitter:image" content="<span id="imageurl3"></span>"&gt;
+            <br>
+            <br> &lt;!-- Shema.org microdata --&gt;
+            <br /> &lt;meta itemprop="name" content="<span id="title1"></span>"&gt;
+            <br> &lt;meta itemprop="description" content="<span id="descrip1"></span>"&gt;
+            <br> &lt;meta itemprop="image" content="<span id="imageurl1"></span>"&gt;
+            <br>
+            <br />
+
+        </div>
+
+        <h2 style="margin:0;">More info</h2>
+        <div id="moreinfo">
+            <div id="leftcol">
+                <ul>
+                    <li>
+                        <a href="https://developers.facebook.com/docs/sharing/webmasters">Facebook Sharing Guidelines</a>
+                    </li>
+                    <li>
+                        <a href="https://dev.twitter.com/cards/types/summary-large-image">Twitter Cards</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/help/linkedin/answer/46687/making-your-website-shareable-on-linkedin?lang=en">Make Your Website Shareable on LinkedIn</a>
+                    </li>
+                    <li>
+                        <a href="https://developers.google.com/+/web/snippet/">Schema.org for Google+ Sharing</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="rightcol">
+                <ul>
+                    <li>
+                        <a href="https://developers.facebook.com/tools/debug/">Facebook Sharing Debugger</a>
+                    </li>
+                    <li>
+                        <a href="https://cards-dev.twitter.com/validator">Twitter Card Validator</a>
+                    </li>
+                    <li>
+                        <a href="https://developer.linkedin.com/docs/share-on-linkedin">Share on LinkedIn</a>
+                    </li>
+                    <li>
+                        <a href="https://search.google.com/structured-data/testing-tool/">Google+ Structured Data Testing</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </article>
+    <?php include($IPATH."footer.html"); ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+
+            $("#tbTitle").keyup(function () {
+                $("#title1").html($("#tbTitle").val());
+                $("#title2").html($("#tbTitle").val());
+                $("#title3").html($("#tbTitle").val());
+                var x = $("#tbTitle").val();
+                var y = x.length;
+                if (y <= 40) {
+                    $("#titlecharcount").html("<span style='color:green;'>" + y + "</span>");
+                } else {
+                    $("#titlecharcount").html("<span style='color:red;'>" + y + "</span>");
+                }
+            });
+            $("#tbDescription").keyup(function () {
+                $("#descrip1").html($("#tbDescription").val());
+                $("#descrip2").html($("#tbDescription").val());
+                $("#descrip3").html($("#tbDescription").val());
+                var a = $("#tbDescription").val();
+                var b = a.length;
+                if (b <= 110) {
+                    $("#descriptcount").html("<span style='color:green;'>" + b + "</span>");
+                } else {
+                    $("#descriptcount").html("<span style='color:red;'>" + b + "</span>");
+                }
+            });
+
+            $("#ddlType").change(function () {
+                $("#type1").html($("#ddlType option:selected").text());
+                switch ($("#ddlType option:selected").val()) {
+                    case '1':
+                        $("#type2").html("summary");
+                        break;
+                    case '2':
+                        $("#type2").html("photo");
+                        break;
+                    case '3':
+                        $("#type2").html("player");
+                }
+
+            });
+
+            $("#tbURL").blur(function () {
+                $("#pageurl1").html($("#tbURL").val());
+                $("#pageurl2").html($("#tbURL").val());
+            });
+
+            $("#tbImageURL").blur(function () {
+                $("#imageurl1").html($("#tbImageURL").val());
+                $("#imageurl2").html($("#tbImageURL").val());
+                $("#imageurl3").html($("#tbImageURL").val());
+            });
+
+            $("#btnGo").click(function () {
+                var html = document.getElementById("allcode").innerHTML;
+
+                //alert(html)
+                var wnd = window.open("", "", "width=750,height=320");
+                wnd.document.write(html);
+            });
+        });
+    </script>
+</body>
+
+</html>
